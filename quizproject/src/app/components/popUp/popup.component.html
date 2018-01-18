@@ -1,0 +1,17 @@
+<div class="popUp">
+    <div class="popUp__text">
+        Вы ответили не на все вопросы или некоторые ответы не верны.
+        Вы и правда хотите закончить тест?
+    </div>
+    <div class="buttons">
+        <button class="send"
+           (click) = "onClosePopUp.emit(true)"
+        >
+            Вернуться к тесту
+        </button>
+        <button class="send send--move"
+                (click)="onShowRes.emit(true)">
+            Показать результат
+        </button>
+    </div>
+</div>

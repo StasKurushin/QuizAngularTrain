@@ -1,0 +1,49 @@
+<div class="quiz"
+     *ngIf="isShownRes === false">
+  <div class="quiz-container">
+    <div class="quiz-timeline">
+     <span class="quiz-timeline__number"
+           *ngFor="let item of questions; let i = index;"
+           [ngClass]="{'quiz-timeline__number--active': currentQuestion === i,
+                     'quiz-timeline__number--true': res[i] === true,
+                     'quiz-timeline__number--false': res[i] === false}"
+           (click)="chooseQuest(i)">
+       {{i+1}}
+     </span>
+    </div>
+    <div class="content">
+      <div class="question">
+        {{getCurrentQuestion()}}
+      </div>
+    </div>
+    <div class="radios">
+      <label class="radio-label"
+             *ngFor="let variant of getCurrentVar()">
+        {{variant}}
+        <input class="radio" type="radio" name="radio"
+               (click)="currentAnswer = variant">
+        <span class="checkmark"></span>
+      </label>
+    </div>
+  </div>
+  <div class="buttons">
+    <button class="send"
+            (click)="nextQuestion()"
+            >
+      Ответить
+    </button>
+    <button class="send send--move"
+            (click)="showPop()">
+      Показать результат
+    </button>
+  </div>
+</div>
+<app-popup
+        *ngIf="isShownPopUp === true"
+        (onShowRes)="showRes($event)"
+        (onClosePop)="closePopUp()">
+</app-popup>
+<div class="result"
+     *ngIf="isShownRes">
+  {{countRes()}} / {{res.length}}
+</div>
